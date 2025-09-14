@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Matching Type Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5); /* Soft gradient */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .quiz-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .result-box {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Matching Type Quiz</h2>
+    <p>Please enter your details and answer all questions below:</p>
+
+    <!-- Learner Info -->
+    <label for="studentName">Your Name:</label>
+    <input type="text" id="studentName" placeholder="Enter your full name" required>
+
+    <label for="grade">Grade:</label>
+    <input type="text" id="grade" placeholder="Enter your grade (e.g., Grade 10, Grade 9)" required>
+
+    <label for="section">Section:</label>
+    <input type="text" id="section" placeholder="Enter your section (e.g.,Charity, Justice)" required>
+
+    <label>1. 1. It is measured in bits (b) and bytes (B):</label>
+    <select id="q1">
+      <option value="">-- Select --</option>
+      <option value="A">Brain of the computer</option>
+      <option value="B">Data Capacity Storage</option>
+      <option value="C">Long-term storage</option>
+      <option value="D">Memory Speed</option>
+    </select>
+
+    <label>2. Consists of speed, timing and voltage:</label>
+    <select id="q2">
+      <option value="">-- Select --</option>
+      <option value="A">Specification</option>
+      <option value="B">Cache</option>
+      <option value="C">Cores</option>
+      <option value="D">Memory Speed</option>
+    </select>
+
+    <label>3. A small amount of very fast memory that is used for temporary storage:</label>
+    <select id="q3">
+      <option value="">-- Select --</option>
+      <option value="A">Cores</option>
+      <option value="B">Cache</option>
+      <option value="C">Data Storage Capacity</option>
+      <option value="D">Memory Speed</option>
+    </select>
+    <label>4. This is a designed to perform the calculations related to graphics of a processor:</label>
+<select id="q4">
+  <option value="">-- Select --</option>
+  <option value="A">Cores</option>
+  <option value="B">Cache</option>
+  <option value="C">Integrated Graphics Processing Unit</option>
+  <option value="D">Specification</option>
+</select>
+    <label>5. The requirements of the computers for technical details of its components and functionality:</label>
+<select id="q5">
+  <option value="">-- Select --</option>
+  <option value="A">Specification</option>
+  <option value="B">Cache</option>
+  <option value="C">Cores</option>
+  <option value="D">Data Storage Capacity</option>
+</select>
+
+    <button onclick="checkAnswers()">Submit</button>
+
+    <!-- Results -->
+    <div id="result" class="result-box" style="display:none;"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const name = document.getElementById("studentName").value.trim();
+      const grade = document.getElementById("grade").value.trim();
+      const section = document.getElementById("section").value.trim();
+
+      if (name === "" || grade === "" || section === "") {
+        alert("Please fill in your Name, Grade, and Section before submitting.");
+        return;
+      }
+
+      let score = 0;
+      const total = 5;
+
+      if (document.getElementById("q1").value === "B") score++;
+      if (document.getElementById("q2").value === "D") score++;
+      if (document.getElementById("q3").value === "B") score++;
+      if (document.getElementById("q4").value === "C") score++;
+      if (document.getElementById("q5").value === "A") score++;
+
+      let percentage = (score / total) * 100;
+
+      // Show result
+      const resultBox = document.getElementById("result");
+      resultBox.style.display = "block";
+      resultBox.innerHTML = `
+        <strong>Name:</strong> ${name} <br>
+        <strong>Grade:</strong> ${grade} <br>
+        <strong>Section:</strong> ${section} <br><br>
+        <strong>Score:</strong> ${score}/${total} <br>
+        <strong>Percentage:</strong> ${percentage.toFixed(2)}%
+      `;
+    }
+  </script>
+</body>
+</html>
